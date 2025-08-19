@@ -1,6 +1,6 @@
 name: 'Title Cases'
 type: module
-description: 'Provide Title Case display for Titles.'
+description: 'Display a node title using a Title Case from a Style Guide.'
 package: Content authoring
 core_version_requirement: ^10 || ^11
 dependencies:
