@@ -42,7 +42,7 @@ final class TitleCasesSettingsForm extends ConfigFormBase {
       '#type' => 'checkboxes',
       '#title' => $this->t('Content Types'),
       '#options' => $type_options,
-      '#prefix' => $this->t('Apply title case language style to selected content type page titles:'),
+      '#prefix' => $this->t('Apply title case from a language style guide to selected content type page titles:'),
       '#default_value' => $this->config('title_cases.settings')->get('node_types') ?? [],
     ];
 
