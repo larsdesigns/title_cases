@@ -1,0 +1,5 @@
+name: 'Title Cases'
+type: module
+description: 'Provide Title Case display for Titles.'
+package: Content authoring
+core_version_requirement: ^10 || ^11

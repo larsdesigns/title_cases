@@ -1,0 +1,31 @@
+<?php
+
+/**
+ * @file
+ * Primary module hooks for title_cases module.
+ */
+
+use Drupal\title_cases\Controller\TitleCasesController as TitleCases;
+
+/**
+ * Implements hook_preprocess_node().
+ *
+ *   Returns the node title when title printed in the node template.
+ */
+function title_cases_preprocess_node(&$vars) {
+  // AP Title Case for all node titles.
+  TitleCases::titleCasesNodeApTitle($vars);
+}
+
+/**
+ * Implements hook_preprocess_page_title().
+ */
+function title_cases_preprocess_page_title(&$vars) {
+  /** @var \Drupal\node\Entity\Node $node */
+  $node = \Drupal::request()->attributes->get('node');
+
+  // AP Title Case for all node titles.
+  if (isset($node)) {
+    $vars['title'] = TitleCases::titleCasesApTitle($node);
+  }
+}

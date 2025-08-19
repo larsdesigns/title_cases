@@ -1,0 +1,7 @@
+title_cases.title_cases_settings:
+  path: '/admin/config/system/title-cases-settings'
+  defaults:
+    _title: 'Title Cases'
+    _form: 'Drupal\title_cases\Form\TitleCasesSettingsForm'
+  requirements:
+    _permission: 'administer site configuration'

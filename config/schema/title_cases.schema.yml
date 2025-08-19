@@ -1,0 +1,8 @@
+# Schema for the configuration files of the Title Cases module.
+title_cases.settings:
+  type: config_object
+  label: 'Title Cases settings'
+  mapping:
+    example:
+      type: string
+      label: 'Example'

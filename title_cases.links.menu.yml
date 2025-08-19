@@ -1,0 +1,6 @@
+title_cases.title_cases_settings:
+  title: Title cases settings
+  description: Configuration for Title Cases
+  parent: system.admin_config_system
+  route_name: title_cases.title_cases_settings
+  weight: 10
