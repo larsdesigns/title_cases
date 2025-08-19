@@ -3,6 +3,9 @@ title_cases.settings:
   type: config_object
   label: 'Title Cases settings'
   mapping:
-    example:
-      type: string
-      label: 'Example'
+    style_guide:
+      type: array
+      label: 'Style Guide'
+    node_types:
+      type: array
+      label: 'Content Types'
