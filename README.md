@@ -46,10 +46,10 @@ information, see [Installing Drupal Modules](https://www.drupal.org/docs/extendi
 
 ## Troubleshooting (optional)
 
-Displays a node title using a Title Case from a style guide after configuration.
+Displays a node title using a Title Case from the selected style guide after
+configuration.
 
-Block titles (subject field) and View titles are not affected. However, this is
-being considered for future development.
+Block titles and Views field titles are not affected.
 
 Drupal, browser, and other cache may need to be cleared.
 
