@@ -1,7 +1,7 @@
 # Title Cases
 
-The purpose of this module is to simplify the display of node titles using a
-language writing style guide such Associated Press (AP).
+The purpose of this module is to convert the display of node titles using a
+language writing style guide such as Associated Press (AP).
 
 Apply a title case from a language style guide to selected content type page
 titles. The Title Case module only alters the presentation display of the title
