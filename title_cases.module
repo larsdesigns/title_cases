@@ -12,7 +12,8 @@ use Drupal\title_cases\Controller\TitleCasesController as TitleCases;
  *
  *   Returns the node title when title printed in the node template.
  */
-function title_cases_preprocess_node(&$vars) {
+function title_cases_preprocess_node__teaser(&$vars) {
+  /** @var \Drupal\node\Entity\Node $vars['node'] */
   // AP Title Case for all node titles.
   TitleCases::titleCasesNodeApTitle($vars);
 }

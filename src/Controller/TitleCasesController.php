@@ -14,19 +14,13 @@ final class TitleCasesController extends ControllerBase {
 
   /**
    * Generate and Set AP Title Case formatted node titles.
-   *
-   * @param \Drupal\node\Entity\Node $vars
-   *   Sets the AP converted node title.
-   *
-   * @return object
-   *   Return node Variables.
    */
-  public static function titleCasesNodeApTitle(&$vars): object {
-    /** @var \Drupal\node\Entity\Node $vars['node'] */
+  public static function titleCasesNodeApTitle(&$vars): void {
+    /** @var \Drupal\node\Entity\Node $node */
     $node = $vars['node'];
     $ap_title = self::titleCasesApTitle($node);
-
-    return $node->setTitle($ap_title);
+    $node->setTitle($ap_title);
+    $vars['label'] = $node->getTitle();
   }
 
   /**
@@ -39,7 +33,7 @@ final class TitleCasesController extends ControllerBase {
    *   AP Title Case String.
    */
   public static function titleCasesApTitle(&$node): string {
-    /** @var \Drupal\node\Entity\Node $node */        
+    /** @var \Drupal\node\Entity\Node $node */
     $ap_title = $node->getTitle();
 
     // Only convert title when content type is selected in configuration.
@@ -59,7 +53,7 @@ final class TitleCasesController extends ControllerBase {
         }
         $ap_title = ucfirst($case_title);
         $node->setTitle($ap_title);
-      }      
+      }
     }
     return $ap_title;
   }
