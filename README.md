@@ -1,9 +1,5 @@
 # Title Cases
 
-The introduction summarizes the purpose and function of the project, and should
-be concise (a brief paragraph or two). This introduction may be the same as the
-first paragraph on the project page.
-
 The purpose of this module is to simplify the display of node titles using a
 language writing style guide such Associated Press (AP).
 
@@ -18,7 +14,7 @@ Submit bug reports and feature suggestions, or track changes in the
 [issue queue](https://www.drupal.org/project/issues/title_cases).
 
 
-## Table of contents (optional)
+## Table of contents
 
 - Requirements
 - Installation
@@ -27,7 +23,7 @@ Submit bug reports and feature suggestions, or track changes in the
 - Maintainers
 
 
-## Requirements (required)
+## Requirements
 
 This module requires no modules outside of Drupal core.
 
@@ -38,13 +34,13 @@ Install as you would normally install a contributed Drupal module. For further
 information, see [Installing Drupal Modules](https://www.drupal.org/docs/extending-drupal/installing-drupal-modules).
 
 
-## Configuration (required)
+## Configuration
 
 1. Enable the module at Administration > Extend.
 1. Configure the Title Cases module at Administration > Configuration > System
 
 
-## Troubleshooting (optional)
+## Troubleshooting
 
 Displays a node title using a Title Case from the selected style guide after
 configuration.
@@ -53,6 +49,6 @@ Block titles and Views field titles are not affected.
 
 Drupal, browser, and other cache may need to be cleared.
 
-## Maintainers (optional)
+## Maintainers
 
 - Justin Christoffersen - [larsdesigns](https://www.drupal.org/u/larsdesigns)
