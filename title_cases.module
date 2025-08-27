@@ -5,6 +5,7 @@
  * Primary module hooks for title_cases module.
  */
 
+use Drupal\Core\Render\Markup;
 use Drupal\title_cases\Controller\TitleCasesController as TitleCases;
 
 /**
@@ -28,5 +29,22 @@ function title_cases_preprocess_page_title(&$vars) {
   // AP Title Case for all node titles.
   if (isset($node)) {
     $vars['title'] = TitleCases::titleCasesApTitle($node);
+  }
+}
+
+/**
+ * Implements hook_preprocess_html().
+ */
+function title_cases_preprocess_html(&$vars) {
+  /** @var \Drupal\node\Entity\Node $node */
+  $html_title = \Drupal::config('title_cases.settings')->get('html_title');
+  if ($html_title == TRUE) {
+    $node = \Drupal::request()->attributes->get('node');
+
+    // AP Title Case for all node titles.
+    if (isset($node)) {
+      $html_title = \Drupal::config('title_cases.settings')->get('html_title');
+      $vars['head_title'] = Markup::create(TitleCases::titleCasesApTitle($node));
+    }
   }
 }

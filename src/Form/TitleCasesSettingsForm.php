@@ -42,8 +42,15 @@ final class TitleCasesSettingsForm extends ConfigFormBase {
       '#type' => 'checkboxes',
       '#title' => $this->t('Content Types'),
       '#options' => $type_options,
-      '#prefix' => $this->t('Apply title case from a language style guide to selected content type page titles:'),
+      '#prefix' => $this->t('Apply title case from a language style guide to selected content type node titles:'),
       '#default_value' => $this->config('title_cases.settings')->get('node_types') ?? [],
+    ];
+
+    $form['html_title'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('HTML Title'),
+      '#prefix' => $this->t('Apply title case to the HTML document title (title tag):'),
+      '#default_value' => $this->config('title_cases.settings')->get('html_title') ?? FALSE,
     ];
 
     $form['style_guide'] = [
@@ -75,6 +82,7 @@ final class TitleCasesSettingsForm extends ConfigFormBase {
   public function submitForm(array &$form, FormStateInterface $form_state): void {
     $this->config('title_cases.settings')
       ->set('style_guide', $form_state->getValue('style_guide'))
+      ->set('html_title', $form_state->getValue('html_title'))
       ->set('node_types', $form_state->getValue('node_types'))
       ->save();
     parent::submitForm($form, $form_state);
