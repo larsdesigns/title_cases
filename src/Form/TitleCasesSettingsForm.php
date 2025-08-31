@@ -42,34 +42,34 @@ final class TitleCasesSettingsForm extends ConfigFormBase {
       '#type' => 'checkboxes',
       '#title' => $this->t('Content Types'),
       '#options' => $type_options,
-      '#prefix' => $this->t('Apply title case from a language style guide to selected content type node titles:'),
+      '#prefix' => $this->t('Apply title case style to selected content type page titles:'),
       '#default_value' => $this->config('title_cases.settings')->get('node_types') ?? [],
     ];
 
     $form['html_title'] = [
       '#type' => 'checkbox',
-      '#title' => $this->t('HTML Title'),
-      '#prefix' => $this->t('Apply title case to the HTML document title (title tag):'),
+      '#title' => $this->t('Apply title case to the HTML document title tag'),
+      '#prefix' => sprintf('<b>%s</b>', $this->t('HTML Dcoument Title')),
       '#default_value' => $this->config('title_cases.settings')->get('html_title') ?? FALSE,
     ];
 
     $form['style_guide'] = [
       '#type' => 'radios',
-      '#title' => $this->t('Associated Press (AP)'),
+      '#title' => $this->t('Style Guide'),
       '#options' => [
         'ap' => 'Associated Press (AP)',
+        'uc' => 'Uppercase Title',
         // 'mla' => 'Modern Language Associateion (MLA)',
         // 'chicago' => 'Chicago',
       ],
       '#default_value' => $this->config('title_cases.settings')->get('style_guide') ?? 'ap',
-      '#prefix' => $this->t('Select the Style Guide:'),
     ];
 
     $form['instructions'] = [
       '#type' => '#markup',
       '#markup' => sprintf('<p><i>%s</i></p>', $this->t('
         The Title Case module only alters the presentation of the title field
-        and does not change the stored title field value.
+        and does not change the title field value as stored in the database.
       ')),
     ];
 
