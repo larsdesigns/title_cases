@@ -38,11 +38,23 @@ final class TitleCasesSettingsForm extends ConfigFormBase {
       $type_options[$key] = implode($type);
     }
 
+    $form['style_guide'] = [
+      '#type' => 'radios',
+      '#title' => $this->t('Title Case Style'),
+      '#options' => [
+        'ap' => 'Associated Press (AP)',
+        'cap' => 'Capitalize Title',
+        // 'mla' => 'Modern Language Associateion (MLA)',
+        // 'chicago' => 'Chicago',
+      ],
+      '#default_value' => $this->config('title_cases.settings')->get('style_guide') ?? 'ap',
+      '#required' => TRUE,
+    ];
+
     $form['node_types'] = [
       '#type' => 'checkboxes',
       '#title' => $this->t('Content Types'),
       '#options' => $type_options,
-      '#prefix' => $this->t('Apply title case style to selected content type page titles:'),
       '#default_value' => $this->config('title_cases.settings')->get('node_types') ?? [],
     ];
 
@@ -51,18 +63,6 @@ final class TitleCasesSettingsForm extends ConfigFormBase {
       '#title' => $this->t('Apply title case to the HTML document title tag'),
       '#prefix' => sprintf('<b>%s</b>', $this->t('HTML Dcoument Title')),
       '#default_value' => $this->config('title_cases.settings')->get('html_title') ?? FALSE,
-    ];
-
-    $form['style_guide'] = [
-      '#type' => 'radios',
-      '#title' => $this->t('Style Guide'),
-      '#options' => [
-        'ap' => 'Associated Press (AP)',
-        'uc' => 'Uppercase Title',
-        // 'mla' => 'Modern Language Associateion (MLA)',
-        // 'chicago' => 'Chicago',
-      ],
-      '#default_value' => $this->config('title_cases.settings')->get('style_guide') ?? 'ap',
     ];
 
     $form['instructions'] = [
