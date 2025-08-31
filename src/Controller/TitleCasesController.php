@@ -17,7 +17,7 @@ final class TitleCasesController extends ControllerBase {
    */
   public static function titleCasesNodeTitle(&$vars): string {
     /** @var \Drupal\node\Entity\Node $node */
-    $node = $vars['node'];    
+    $node = $vars['node'];
 
     if (\Drupal::config('title_cases.settings')->get('style_guide') == 'ap') {
       $title_case = self::titleCasesApTitle($node);
@@ -39,7 +39,6 @@ final class TitleCasesController extends ControllerBase {
    *   AP Title Case String.
    */
   public static function titleCasesApTitle(&$node): string {
-    /** @var \Drupal\node\Entity\Node $node */
     $ap_title = $node->getTitle();
 
     // Only convert title when content type is selected in configuration.
@@ -64,8 +63,16 @@ final class TitleCasesController extends ControllerBase {
     return $ap_title;
   }
 
+  /**
+   * Generate Capitalized Title Case formatted titles.
+   *
+   * @param \Drupal\node\Entity\Node $node
+   *   The Drupal node objects.
+   *
+   * @return string
+   *   Capitalized Title Case String.
+   */
   public static function titleCasesCapitalize(&$node): string {
-    /** @var \Drupal\node\Entity\Node $node */
     $cap_title = $node->getTitle();
 
     // Only convert title when content type is selected in configuration.
