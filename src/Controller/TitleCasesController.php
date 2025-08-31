@@ -48,7 +48,7 @@ final class TitleCasesController extends ControllerBase {
     if (isset($types)) {
       if (in_array($node_type, $types)) {
         $title = new UnicodeString($node->getTitle());
-        $case_title = $title->lower()->title(TRUE)->toString();
+        $case_title = $title->title(TRUE)->toString();
         $subjects = ['a', 'an', 'the', 'and', 'as', 'but', 'for', 'if', 'nor', 'or',
           'so', 'yet', 'at', 'by', 'for', 'in', 'of', 'off', 'on', 'per', 'to',
           'up', 'via',
@@ -82,7 +82,7 @@ final class TitleCasesController extends ControllerBase {
     if (isset($types)) {
       if (in_array($node_type, $types)) {
         $title = new UnicodeString($node->getTitle());
-        $cap_title = $title->lower()->title(TRUE)->toString();
+        $cap_title = $title->title(TRUE)->toString();
         $node->setTitle($cap_title);
       }
     }
