@@ -61,7 +61,7 @@ final class TitleCasesSettingsForm extends ConfigFormBase {
 
     $form['node_teaser'] = [
       '#type' => 'checkbox',
-      '#title' => $this->t('Apply title case to the node teaser.'),
+      '#title' => $this->t('Apply title case to the node teaser'),
       '#prefix' => sprintf('<b>%s</b>', $this->t('Teaser Title')),
       '#default_value' => $this->config('title_cases.settings')->get('node_teaser') ?? TRUE,
     ];
