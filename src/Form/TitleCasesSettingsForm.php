@@ -62,7 +62,7 @@ final class TitleCasesSettingsForm extends ConfigFormBase {
       '#type' => 'checkbox',
       '#title' => $this->t('Apply title case to the HTML document title tag'),
       '#prefix' => sprintf('<b>%s</b>', $this->t('HTML Dcoument Title')),
-      '#default_value' => $this->config('title_cases.settings')->get('html_title') ?? FALSE,
+      '#default_value' => $this->config('title_cases.settings')->get('html_title') ?? TRUE,
     ];
 
     $form['instructions'] = [
