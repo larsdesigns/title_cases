@@ -15,12 +15,18 @@ final class TitleCasesController extends ControllerBase {
   /**
    * Generate and Set AP Title Case formatted node titles.
    */
-  public static function titleCasesNodeApTitle(&$vars): void {
+  public static function titleCasesNodeTitle(&$vars): string {
     /** @var \Drupal\node\Entity\Node $node */
-    $node = $vars['node'];
-    $ap_title = self::titleCasesApTitle($node);
-    $node->setTitle($ap_title);
-    $vars['label'] = $node->getTitle();
+    $node = $vars['node'];    
+
+    if (\Drupal::config('title_cases.settings')->get('style_guide') == 'ap') {
+      $title_case = self::titleCasesApTitle($node);
+    }
+    elseif (\Drupal::config('title_cases.settings')->get('style_guide') == 'cap') {
+      $title_case = self::titleCasesCapitalize($node);
+    }
+
+    return $node->getTitle();
   }
 
   /**
@@ -43,7 +49,7 @@ final class TitleCasesController extends ControllerBase {
     if (isset($types)) {
       if (in_array($node_type, $types)) {
         $title = new UnicodeString($node->getTitle());
-        $case_title = $title->title(TRUE)->toString();
+        $case_title = $title->lower()->title(TRUE)->toString();
         $subjects = ['a', 'an', 'the', 'and', 'as', 'but', 'for', 'if', 'nor', 'or',
           'so', 'yet', 'at', 'by', 'for', 'in', 'of', 'off', 'on', 'per', 'to',
           'up', 'via',
@@ -56,6 +62,24 @@ final class TitleCasesController extends ControllerBase {
       }
     }
     return $ap_title;
+  }
+
+  public static function titleCasesCapitalize(&$node): string {
+    /** @var \Drupal\node\Entity\Node $node */
+    $cap_title = $node->getTitle();
+
+    // Only convert title when content type is selected in configuration.
+    $node_type = $node->getType();
+    $types = \Drupal::config('title_cases.settings')->get('node_types');
+
+    if (isset($types)) {
+      if (in_array($node_type, $types)) {
+        $title = new UnicodeString($node->getTitle());
+        $cap_title = $title->lower()->title(TRUE)->toString();
+        $node->setTitle($cap_title);
+      }
+    }
+    return $cap_title;
   }
 
 }
