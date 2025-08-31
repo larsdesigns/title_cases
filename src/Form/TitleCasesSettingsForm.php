@@ -31,13 +31,6 @@ final class TitleCasesSettingsForm extends ConfigFormBase {
    */
   public function buildForm(array $form, FormStateInterface $form_state): array {
     /** @var \Drupal\Core\Form\ConfigFormBase $form */
-
-    // Get content types for options.
-    $types = \Drupal::service('entity_type.bundle.info')->getBundleInfo('node');
-    foreach ($types as $key => $type) {
-      $type_options[$key] = implode($type);
-    }
-
     $form['style_guide'] = [
       '#type' => 'radios',
       '#title' => $this->t('Title Case Style'),
@@ -51,11 +44,26 @@ final class TitleCasesSettingsForm extends ConfigFormBase {
       '#required' => TRUE,
     ];
 
+    // Get content types for options.
+    $types = \Drupal::service('entity_type.bundle.info')->getBundleInfo('node');
+    if (is_array($types)) {
+      foreach ($types as $key => $type) {
+        $type_options[$key] = implode($type);
+      }
+    }
+
     $form['node_types'] = [
       '#type' => 'checkboxes',
       '#title' => $this->t('Content Types'),
       '#options' => $type_options,
       '#default_value' => $this->config('title_cases.settings')->get('node_types') ?? [],
+    ];
+
+    $form['node_teaser'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Apply title case to the node teaser.'),
+      '#prefix' => sprintf('<b>%s</b>', $this->t('Teaser Title')),
+      '#default_value' => $this->config('title_cases.settings')->get('node_teaser') ?? TRUE,
     ];
 
     $form['html_title'] = [
@@ -84,6 +92,7 @@ final class TitleCasesSettingsForm extends ConfigFormBase {
       ->set('style_guide', $form_state->getValue('style_guide'))
       ->set('html_title', $form_state->getValue('html_title'))
       ->set('node_types', $form_state->getValue('node_types'))
+      ->set('node_teaser', $form_state->getValue('node_teaser'))
       ->save();
     parent::submitForm($form, $form_state);
   }

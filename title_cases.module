@@ -16,7 +16,9 @@ use Drupal\title_cases\Controller\TitleCasesController as TitleCases;
 function title_cases_preprocess_node__teaser(&$vars) {
   /** @var \Drupal\node\Entity\Node $vars['node'] */
   // AP Title Case for all node titles.
-  $vars['label'] = TitleCases::titleCasesNodeTitle($vars);  
+  if (\Drupal::config('title_cases.settings')->get('node_teaser') == TRUE) {
+    $vars['label'] = TitleCases::titleCasesNodeTitle($vars);
+  }
 }
 
 /**
