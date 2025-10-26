@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Drupal\title_cases\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
-use Symfony\Component\String\UnicodeString;
+use Symfony\Component\String\ByteString;
 
 /**
  * Returns responses for title_cases routes.
@@ -47,7 +47,7 @@ final class TitleCasesController extends ControllerBase {
 
     if (isset($types)) {
       if (in_array($node_type, $types)) {
-        $title = new UnicodeString($node->getTitle());
+        $title = new ByteString($node->getTitle());
         $case_title = $title->title(TRUE)->toString();
         $subjects = ['a', 'an', 'the', 'and', 'as', 'but', 'for', 'if', 'nor', 'or',
           'so', 'yet', 'at', 'by', 'for', 'in', 'of', 'off', 'on', 'per', 'to',
@@ -81,8 +81,8 @@ final class TitleCasesController extends ControllerBase {
 
     if (isset($types)) {
       if (in_array($node_type, $types)) {
-        $title = new UnicodeString($node->getTitle());
-        $cap_title = $title->title(TRUE)->toString();
+        $title = new ByteString($node->getTitle());
+        $cap_title = $title->toByteString()->title(TRUE)->toString();
         $node->setTitle($cap_title);
       }
     }
