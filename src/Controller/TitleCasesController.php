@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Drupal\title_cases\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
+use Drupal\node\Entity\Node;
 use Symfony\Component\String\ByteString;
 
 /**
@@ -19,13 +20,14 @@ final class TitleCasesController extends ControllerBase {
     /** @var \Drupal\node\Entity\Node $node */
     $node = $vars['node'];
 
-    if (\Drupal::config('title_cases.settings')->get('style_guide') == 'ap') {
-      $title_case = self::titleCasesApTitle($node);
-    }
-    elseif (\Drupal::config('title_cases.settings')->get('style_guide') == 'cap') {
-      $title_case = self::titleCasesCapitalize($node);
-    }
-
+      if (is_object($node)) {
+        if (\Drupal::config('title_cases.settings')->get('style_guide') == 'ap') {
+          $title_case = self::titleCasesApTitle($node);
+        }
+        elseif (\Drupal::config('title_cases.settings')->get('style_guide') == 'cap') {
+          $title_case = self::titleCasesCapitalize($node);
+        }
+      }
     return $node->getTitle();
   }
 
@@ -38,7 +40,7 @@ final class TitleCasesController extends ControllerBase {
    * @return string
    *   AP Title Case String.
    */
-  public static function titleCasesApTitle(&$node): string {
+  public static function titleCasesApTitle(Node &$node): string {
     $ap_title = $node->getTitle();
 
     // Only convert title when content type is selected in configuration.
@@ -72,7 +74,7 @@ final class TitleCasesController extends ControllerBase {
    * @return string
    *   Capitalized Title Case String.
    */
-  public static function titleCasesCapitalize(&$node): string {
+  public static function titleCasesCapitalize(Node &$node): string {
     $cap_title = $node->getTitle();
 
     // Only convert title when content type is selected in configuration.
